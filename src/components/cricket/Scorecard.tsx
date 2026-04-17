@@ -19,7 +19,7 @@ export function Scorecard({ match, teams }: Props) {
     (async () => {
       const { data: ps } = await supabase.from("players").select("*")
         .in("team_id", [match.team1_id, match.team2_id]);
-      setPlayers(new Map((ps ?? []).map((p: Player) => [p.id, p])));
+      setPlayers(new Map((ps ?? []).map((p: any) => [p.id as string, p as Player])));
     })();
   }, [match.team1_id, match.team2_id]);
 
